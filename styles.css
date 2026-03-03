@@ -1,0 +1,307 @@
+/* ============================================================
+   STEP 1 — UNIVERSAL BOX SIZING RESET
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   STEP 2 — CUSTOM TYPOGRAPHY via @font-face (local WOFF)
+   Playfair Display is used as the primary editorial font via
+   Google Fonts @import (CDN). The @font-face block below 
+   references the locally stored WOFF as the fallback/secondary.
+   ============================================================ */
+@font-face {
+    font-family: 'PlayfairCustom';
+    src: url('fonts/PlayfairDisplay_Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #0f1623;
+    background-image:
+        radial-gradient(ellipse at 30% 15%, rgba(198, 167, 94, 0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 85%, rgba(36, 59, 85, 0.6) 0%, transparent 60%),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 80px,
+            rgba(248, 244, 227, 0.018) 80px,
+            rgba(248, 244, 227, 0.018) 81px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 80px,
+            rgba(248, 244, 227, 0.018) 80px,
+            rgba(248, 244, 227, 0.018) 81px
+        );
+}
+
+/* ============================================================
+   PAGE WRAPPER
+   ============================================================ */
+.page-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3.5rem 1.5rem;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ============================================================
+   STEP 3 — PROMO CARD (multi-background + shadow depth)
+   ============================================================ */
+.promo-card {
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    border-radius: 4px;
+    padding: 3.25rem 3rem 2.75rem;
+    overflow: visible;
+
+    /* MULTI-LAYER BACKGROUND: translucent overlay + base gradient */
+    background:
+        linear-gradient(
+            rgba(248, 244, 227, 0.03) 0%,
+            rgba(198, 167, 94, 0.04) 100%
+        ),
+        linear-gradient(135deg, #1B263B 0%, #243B55 100%);
+
+    /* Refined warm elevation */
+    box-shadow:
+        0 25px 60px rgba(27, 38, 59, 0.28),
+        0 0 0 1px rgba(198, 167, 94, 0.18),
+        inset 0 1px 0 rgba(248, 244, 227, 0.07);
+
+    /* STEP 6 — FLOATING ANIMATION */
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Decorative gold top rule */
+.promo-card::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 3rem;
+    right: 3rem;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #C6A75E 30%, #C6A75E 70%, transparent);
+}
+
+/* ============================================================
+   STEP 6 — KEYFRAME ANIMATION (float)
+   ============================================================ */
+@keyframes float {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* ============================================================
+   STEP 5B — "New!" BADGE (rotational transform)
+   ============================================================ */
+.badge {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    background: #C6A75E;
+    color: #1B263B;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.78rem;
+    font-style: italic;
+    letter-spacing: 0.06em;
+    padding: 0.45rem 0.95rem;
+    border-radius: 3px;
+    box-shadow: 0 4px 18px rgba(198, 167, 94, 0.28);
+
+    /* ROTATIONAL TRANSFORM — rotateZ 2D */
+    transform: rotateZ(20deg);
+}
+
+/* ============================================================
+   CARD HEADER
+   ============================================================ */
+.card-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(248, 244, 227, 0.12);
+    padding-bottom: 1.75rem;
+}
+
+.program-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #D4C29A;
+    margin-bottom: 0.75rem;
+    font-style: normal;
+}
+
+.card-title {
+    font-size: 3.75rem;
+    line-height: 1.02;
+    font-weight: 700;
+    color: #F8F4E3;
+    letter-spacing: -0.01em;
+    font-style: italic;
+}
+
+.card-title::after {
+    content: '';
+    display: block;
+    width: 52px;
+    height: 2px;
+    background: linear-gradient(90deg, #C6A75E, rgba(198, 167, 94, 0.15));
+    margin-top: 1rem;
+}
+
+.card-subtitle {
+    margin-top: 1rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: #E0D8C3;
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 400;
+}
+
+/* ============================================================
+   STEP 4 — RESIZABLE INFO BOX with hover outline
+   ============================================================ */
+.info-box {
+    background: rgba(248, 244, 227, 0.08);
+    border: 1px solid rgba(248, 244, 227, 0.2);
+    border-radius: 3px;
+    padding: 1.6rem 1.75rem;
+    margin-bottom: 2rem;
+    color: #F8F4E3;
+
+    /* USER RESIZABLE */
+    resize: both;
+    overflow: auto;
+    min-width: 240px;
+    min-height: 160px;
+
+    transition: outline-color 0.35s ease, background 0.35s ease;
+    outline: 2px solid transparent;
+    outline-offset: 15px;
+}
+
+/* HOVER — gold outline with visible 15px gap */
+.info-box:hover {
+    outline: 2px solid #C6A75E;
+    outline-offset: 15px;
+    background: rgba(248, 244, 227, 0.11);
+}
+
+.info-title {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #D4C29A;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.info-text {
+    font-size: 0.87rem;
+    line-height: 1.75;
+    letter-spacing: 0.015em;
+    margin-bottom: 1.1rem;
+    color: rgba(248, 244, 227, 0.78);
+    font-style: normal;
+}
+
+.info-list {
+    list-style: none;
+    margin-bottom: 1.1rem;
+}
+
+.info-list li {
+    font-size: 0.84rem;
+    letter-spacing: 0.02em;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(248, 244, 227, 0.07);
+    color: rgba(248, 244, 227, 0.8);
+    font-style: normal;
+}
+
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+.info-list strong {
+    color: #F8F4E3;
+    font-weight: 600;
+}
+
+/* ============================================================
+   CARD FOOTER
+   ============================================================ */
+.card-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.seats-badge {
+    background: rgba(198, 167, 94, 0.1);
+    border: 1px solid rgba(198, 167, 94, 0.3);
+    color: #D4C29A;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.38rem 1.1rem;
+    border-radius: 999px;
+    font-style: normal;
+}
+
+/* ============================================================
+   STEP 5A — REGISTER BUTTON (2D scale transform on hover)
+   ============================================================ */
+.register-btn {
+    display: inline-block;
+    background: #F8F4E3;
+    color: #1B263B;
+    text-decoration: none;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.9rem 3rem;
+    border-radius: 3px;
+    box-shadow: 0 4px 18px rgba(27, 38, 59, 0.22);
+
+    /* SMOOTH TRANSITION for scale + color */
+    transition: transform 0.28s ease, background 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
+}
+
+/* 2D SCALE TRANSFORM on hover */
+.register-btn:hover {
+    transform: scale(1.1);
+    background: #C6A75E;
+    color: #1B263B;
+    box-shadow: 0 10px 25px rgba(198, 167, 94, 0.35);
+}
+
+.contact-info {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: rgba(248, 244, 227, 0.35);
+    text-transform: uppercase;
+    font-style: normal;
+}
